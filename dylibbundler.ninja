@@ -1,0 +1,8 @@
+# DylibBundler, only needed if we're on Mac OS
+build build/dylibbundler: dgpp $
+    ./dylibbundler/src/Settings.cpp $
+    ./dylibbundler/src/dylibbundler.cpp $
+    ./dylibbundler/src/main.cpp $
+    ./dylibbundler/src/Dependency.cpp $
+    ./dylibbundler/src/Utils.cpp
+  inc = ./dylibbundler/src/
