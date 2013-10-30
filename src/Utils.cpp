@@ -19,6 +19,7 @@
 #include "Dependency.h"
 #include "Settings.h"
 #include <iostream>
+#include <unistd.h>
 #include <stdio.h>
 #include <sys/stat.h>
 using namespace std;

@@ -1,0 +1,15 @@
+# Ninja file generated using autoNinja
+
+rule cxx
+  command = g++ -I./src -c $in -o $out
+  description = CXX: $out
+rule exe
+  command = g++ -o $out $in
+  description = Executable: $out
+
+build ./src/Dependency.o: cxx ./src/Dependency.cpp
+build ./src/DylibBundler.o: cxx ./src/DylibBundler.cpp
+build ./src/Settings.o: cxx ./src/Settings.cpp
+build ./src/Utils.o: cxx ./src/Utils.cpp
+build ./src/main.o: cxx ./src/main.cpp
+build ./dylibbundler: exe ./src/Dependency.o ./src/DylibBundler.o ./src/Settings.o ./src/Utils.o ./src/main.o
