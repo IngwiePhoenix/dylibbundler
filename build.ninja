@@ -6,6 +6,9 @@ rule cxx
 rule exe
   command = g++ -o $out $in
   description = Executable: $out
+rule system
+  command = $cmd
+  description = SYSTEM: $cmd
 
 build ./src/Dependency.o: cxx ./src/Dependency.cpp
 build ./src/DylibBundler.o: cxx ./src/DylibBundler.cpp
@@ -13,3 +16,12 @@ build ./src/Settings.o: cxx ./src/Settings.cpp
 build ./src/Utils.o: cxx ./src/Utils.cpp
 build ./src/main.o: cxx ./src/main.cpp
 build ./dylibbundler: exe ./src/Dependency.o ./src/DylibBundler.o ./src/Settings.o ./src/Utils.o ./src/main.o
+
+build install: system
+  cmd = if [ ! -f ./dylibbundler ]; then $
+            echo "Please run 'ninja' first - then install." >&2; $
+        else $
+            cp ./dylibbundler /usr/local/bin && chmod 775 /usr/local/bin/dylibbundler; $
+        fi
+
+default ./dylibbundler

@@ -1,0 +1,8 @@
+
+*.o
+
+dylibbundler
+
+.ninja_log
+
+.ninja_deps
